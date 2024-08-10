@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedding Search and Add</title>
+    <link rel="stylesheet" href="/static/embeddings.css">
+</head>
+<body>
+    {% if success_message %}
+        <div class="notification">{{ success_message }}</div>
+    {% endif %}
+    <div class="embedding_opts">
+        <div class="embedding_opt">
+            <h2>Embedding Search</h2>
+            <form method="POST" action="/search">
+                <label for="query_embedding">Query Embedding:</label>
+                <input type="text" id="query_embedding" name="query_embedding">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        {% if search_results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Embedding</th>
+                        <th>Metadata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in search_results %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ result.embedding }}</td>
+                        <td>{{ result.metadata }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <div class="embedding_opt">
+            <h2>Add Embedding</h2>
+            <form method="POST" action="/store">
+                <label for="embedding">Embedding:</label>
+                <input type="text" id="embedding" name="embedding">
+                <label for="metadata">Metadata (optional):</label>
+                <input type="text" id="metadata" name="metadata">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

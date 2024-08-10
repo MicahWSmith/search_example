@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif; /* Replace with your preferred font */
+    margin: 0;
+    padding: 0;
+    background-color: #222222; /* Light gray background */
+    height: 100%;
+  }
+
+  .notification {
+    background-color: #a6ffa6; 
+    color: #333; 
+    border-radius: 20px; 
+    padding: 10px 20px;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; 
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd; /* Light border for light mode */
+    border: 1px solid #333; /* Dark border for dark mode */
+    background-color: #fff; /* Light background */
+    background-color: #222; /* Dark background */
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Light border */
+    border-bottom: 1px solid #333; /* Dark border */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Light header background */
+    background-color: #333; /* Dark header background */
+    color: #333; /* Light header text */
+    color: #fff; /* Dark header text */
+  }
+
+  .embedding_opts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+  }
+
+  .embedding_opt{
+    color: aliceblue;
+    border: 1px solid #191919; /* Light gray border */
+    background-color: #393939; /* Light gray background */
+    border-radius: 5px; /* Rounded corners */
+    padding: 18px; /* Internal spacing */
+    min-width: 20em;
+    margin-bottom: 2em;
+  }
+
+  form{
+    margin-bottom: 3em;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style your forms here */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,3 @@
+chromadb
+flask
+sentence_transformers
