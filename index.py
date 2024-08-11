@@ -1,15 +1,13 @@
 import uuid
 from flask import Flask, request, jsonify, render_template, redirect, session
-from sentence_transformers import SentenceTransformer
 import chromadb
-import numpy as np
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(24).hex()
 
 chroma_client = chromadb.Client()
 chroma_collection = chroma_client.create_collection("my_collection")
-
-model = SentenceTransformer('all-MiniLM-L6-v2')
 
 @app.route('/')
 def index():
@@ -27,11 +25,9 @@ def store_embedding():
     try:
         text_embedding = request.form['embedding']
         metadata = dict(metadata=request.form.get('metadata', {}))
-        embedding = model.encode(text_embedding)
-        embedding = embedding.tolist()
         chroma_collection.add(
             ids=[str(uuid.uuid4())],
-            embeddings=[embedding],
+            documents=[text_embedding],
             metadatas=[metadata]
         )
         session['embedding_added'] = True
@@ -43,13 +39,19 @@ def store_embedding():
 @app.route('/search', methods=['POST'])
 def search_embeddings():
     query = request.form['query_embedding']
-    query_embedding = model.encode([query])
     results = chroma_collection.query(
-        query_embeddings=[query_embedding],
-        n_results=10
+        query_texts=[query],
+        n_results=2
     )
     if results:
-        session['search_results'] = results
+        print(f'Search results: {results}')
+        formatted_results = []
+        for x in range(len(results['documents'][0])):
+            formatted_results.append({
+                "document": results['documents'][0][x],
+                "distance": results['distances'][0][x]
+            })
+        session['search_results'] = formatted_results
         return redirect('/')
     else:
         return jsonify({'error': 'No results found'}), 404

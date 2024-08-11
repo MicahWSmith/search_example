@@ -12,15 +12,15 @@ body {
     border-radius: 20px; 
     padding: 10px 20px;
     position: fixed;
-    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999; 
   }
 
   table {
-    width: 100%;
+    min-width: 22em;
     border-collapse: collapse;
+    color: white;
     border: 1px solid #ddd; /* Light border for light mode */
     border: 1px solid #333; /* Dark border for dark mode */
     background-color: #fff; /* Light background */
